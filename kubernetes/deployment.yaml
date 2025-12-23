@@ -21,3 +21,5 @@ spec:
       - image: mrboom.azurecr.io/sampleapp:3d86906c710ab81b8d08aded124c89896f58debb
         name: test
         resources: {}
+      imagePullSecrets:
+      - name: acr-register
