@@ -25,9 +25,10 @@ jobs:
       - name: Change Deployment Image
         uses: fjogeleit/yaml-update-action@main
         with:
-          file: 'kubernetes/deployment.yaml'
-          updates: |
-            spec.template.spec.containers[0].image=${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
+          valueFile: 'kubernetes/deployment.yaml'
+          propertyPath: 'spec.template.spec.containers[0].image'
+          value: '${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}'
+          commitChange: false
       - name: view updated deployment file
         run: cat kubernetes/deployment.yaml
 
