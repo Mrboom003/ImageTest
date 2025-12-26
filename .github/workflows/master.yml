@@ -28,7 +28,9 @@ jobs:
           valueFile: 'kubernetes/deployment.yaml'
           propertyPath: 'spec.template.spec.containers[0].image'
           value: '${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}'
-          commitChange: false
+          commitChange: true
+          branch: 'master'
+          message: 'Update deployment image to ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}'
       - name: view updated deployment file
         run: cat kubernetes/deployment.yaml
 
