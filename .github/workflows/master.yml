@@ -29,10 +29,10 @@ jobs:
         run: |
           git config --global credential.helper store
           echo "https://${GIT_TOKEN}:x-oauth-basic@github.com" > ~/.git-credentials
-          if [ -d "test-image" ]; then rm -rf test-image; fi
+          if [ -d "ImageTest" ]; then rm -rf ImageTest; fi
           
           git clone https://github.com/Mrboom003/ImageTest.git
-          cd test-image/ImageTest/kubernetes
+          cd ImageTest/kubernetes
 
           sed -i "s|image: mrboom.azurecr.io/sampleapp:.*|image: mrboom.azurecr.io/sampleapp:${{ github.sha }}|g" deployment.yaml
 
