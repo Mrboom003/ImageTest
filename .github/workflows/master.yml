@@ -23,9 +23,9 @@ jobs:
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
       - name: Change Deployment Image
-        run: |
-          TAG=${{ github.sha }}
-          sed -i "s|^\([[:space:]]*image:[[:space:]]*.*sampleapp:\).*|\1${TAG}|g" kubernetes/deployment.yaml
-          echo "UPDATED DEPLOYMENT:"
-          cat kubernetes/deployment.yaml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          file: 'kubernetes/deployment.yaml'
+          updates: |
+            spec.template.spec.containers[0].image=${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
 
