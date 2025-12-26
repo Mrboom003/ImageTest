@@ -23,9 +23,7 @@ jobs:
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
       - name: Update Gitops Repository
-        shell: bash
-        env:
-          GIT_TOKEN: ${{ secrets.GITOPS_PAT }}
+        uses: actions/checkout@v4
         run: |
           if [ -d "ImageTest" ]; then rm -rf ImageTest; fi
           
