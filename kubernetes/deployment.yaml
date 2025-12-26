@@ -18,7 +18,7 @@ spec:
         app: test-deploy
     spec:
       containers:
-      - image: mrboom.azurecr.io/sampleapp:3d86906c710ab81b8d08aded124c89896f58debb
+      - image: mrboom.azurecr.io/sampleapp:887560bcbe59c39b365657d4d58b658373017241
         name: test
         resources: {}
         ports:
