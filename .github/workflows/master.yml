@@ -27,8 +27,6 @@ jobs:
         env:
           GIT_TOKEN: ${{ secrets.GITOPS_PAT }}
         run: |
-          git config --global credential.helper store
-          echo "https://${GIT_TOKEN}:x-oauth-basic@github.com" > ~/.git-credentials
           if [ -d "ImageTest" ]; then rm -rf ImageTest; fi
           
           git clone https://github.com/Mrboom003/ImageTest.git
